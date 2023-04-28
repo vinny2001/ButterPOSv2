@@ -1,4 +1,4 @@
-package com.example.butterposv2
+package com.example.butterpos
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
-
+import com.bumptech.glide.Glide
+import com.example.butterposv2.R
 
 //adapter for the food Recycler View
-class foodRecyclerAdapter(foodList: ArrayList<Food>) : RecyclerView.Adapter<foodRecyclerAdapter.FoodViewHolder>() {
+class foodRecyclerAdapter( var foodList: ArrayList<AmericanFoods>) : RecyclerView.Adapter<foodRecyclerAdapter.FoodViewHolder>() {
 
     //inner class provides a reference to each particular row in RecyclerView
-    class FoodViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    inner class FoodViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val foodName = itemView.findViewById<TextView>(R.id.food_name_label)
         //val foodPrice =... create our own price here if we cant grab one from API
         val foodImage = itemView.findViewById<ImageView>(R.id.food_picture)
@@ -26,9 +26,15 @@ class foodRecyclerAdapter(foodList: ArrayList<Food>) : RecyclerView.Adapter<food
         return FoodViewHolder(view)
     }
     override fun onBindViewHolder(holder:FoodViewHolder, position:Int) {
-        /*val currentFood = AmericanFoods[position]
+        val currentFood = foodList[position]
         holder.foodName.text = "${currentFood.strMeal}"
-        holder.foodImage.setImageResource(currentFood.strMealThumb)*/
+        val myContext = holder.itemView.context
+
+        Glide.with(myContext)
+            .load(currentFood.strMealThumb)
+            .placeholder(R.drawable.baseline_fastfood_24)//if image doesnt load
+            .into(holder.foodImage)
+
 
     }
     override fun getItemCount(): Int {
