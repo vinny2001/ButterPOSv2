@@ -1,4 +1,4 @@
-package com.example.butterpos
+package com.example.butterposv2
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.butterposv2.R
+import com.example.butterpos.AmericanFoods
 
 //adapter for the food Recycler View
 class foodRecyclerAdapter( var foodList: ArrayList<AmericanFoods>) : RecyclerView.Adapter<foodRecyclerAdapter.FoodViewHolder>() {
@@ -20,12 +20,12 @@ class foodRecyclerAdapter( var foodList: ArrayList<AmericanFoods>) : RecyclerVie
 
 
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType:Int):FoodViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType:Int): FoodViewHolder {
         //takes a file and inflates during runtime
         val view = LayoutInflater.from(parent.context).inflate(R.layout.food_individual_row, parent, false)
         return FoodViewHolder(view)
     }
-    override fun onBindViewHolder(holder:FoodViewHolder, position:Int) {
+    override fun onBindViewHolder(holder: FoodViewHolder, position:Int) {
         val currentFood = foodList[position]
         holder.foodName.text = "${currentFood.strMeal}"
         val myContext = holder.itemView.context

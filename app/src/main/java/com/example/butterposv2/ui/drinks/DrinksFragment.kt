@@ -1,4 +1,4 @@
-package com.example.butterposv2.ui
+package com.example.butterposv2.ui.drinks
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

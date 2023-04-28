@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_order"
-        android:name="com.example.butterposv2.ui.OrderFragment"
+        android:name="com.example.butterposv2.ui.order.OrderFragment"
         android:label="Order"
         tools:layout="@layout/fragment_order" />
 
     <fragment
         android:id="@+id/navigation_food"
-        android:name="com.example.butterposv2.ui.FoodFragment"
+        android:name="com.example.butterposv2.ui.food.FoodFragment"
         android:label="Food"
         tools:layout="@layout/fragment_food" />
 
     <fragment
         android:id="@+id/navigation_drinks"
-        android:name="com.example.butterposv2.ui.DrinksFragment"
+        android:name="com.example.butterposv2.ui.drinks.DrinksFragment"
         android:label="Drinks"
         tools:layout="@layout/fragment_drinks" />
 
