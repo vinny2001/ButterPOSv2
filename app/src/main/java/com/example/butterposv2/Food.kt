@@ -1,6 +1,4 @@
-package com.example.butterpos
-
-import android.graphics.Picture
+package com.example.butterposv2
 
 data class Food(
     val meals:List<AmericanFoods>

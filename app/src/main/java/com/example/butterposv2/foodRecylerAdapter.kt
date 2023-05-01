@@ -7,16 +7,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.butterpos.AmericanFoods
 
 //adapter for the food Recycler View
 class foodRecyclerAdapter( var foodList: ArrayList<AmericanFoods>) : RecyclerView.Adapter<foodRecyclerAdapter.FoodViewHolder>() {
 
     //inner class provides a reference to each particular row in RecyclerView
     inner class FoodViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val foodName = itemView.findViewById<TextView>(R.id.food_name_label)
+        val foodName: TextView = itemView.findViewById<TextView>(R.id.food_name_label)
         //val foodPrice =... create our own price here if we cant grab one from API
-        val foodImage = itemView.findViewById<ImageView>(R.id.food_picture)
+        val foodImage: ImageView = itemView.findViewById<ImageView>(R.id.food_picture)
 
 
     }
