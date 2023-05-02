@@ -13,9 +13,9 @@ class foodRecyclerAdapter( var foodList: ArrayList<AmericanFoods>) : RecyclerVie
 
     //inner class provides a reference to each particular row in RecyclerView
     inner class FoodViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val foodName: TextView = itemView.findViewById(R.id.food_name_label)
+        val foodName: TextView = itemView.findViewById(R.id.drinks_name_label)
         //val foodPrice =... create our own price here if we cant grab one from API
-        val foodImage: ImageView = itemView.findViewById(R.id.food_picture)
+        val foodImage: ImageView = itemView.findViewById(R.id.drinks_picture)
 
 
     }
