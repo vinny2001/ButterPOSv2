@@ -11,6 +11,6 @@ interface FoodService {
     //below is restfull API for search by different options
     //https://www.themealdb.com/api/json/v1/1/filter.php?a=American
 
-    @GET(".")
-    fun getFoodInfo(@Query("cuisine")Cuisine:String): Call<Food>
+    @GET("filter.php")
+    fun getFoodInfo(@Query("a") cuisine:String): Call<Food>
 }

@@ -13,9 +13,9 @@ class foodRecyclerAdapter( var foodList: ArrayList<AmericanFoods>) : RecyclerVie
 
     //inner class provides a reference to each particular row in RecyclerView
     inner class FoodViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val foodName: TextView = itemView.findViewById<TextView>(R.id.food_name_label)
+        val foodName: TextView = itemView.findViewById(R.id.food_name_label)
         //val foodPrice =... create our own price here if we cant grab one from API
-        val foodImage: ImageView = itemView.findViewById<ImageView>(R.id.food_picture)
+        val foodImage: ImageView = itemView.findViewById(R.id.food_picture)
 
 
     }
@@ -41,7 +41,7 @@ class foodRecyclerAdapter( var foodList: ArrayList<AmericanFoods>) : RecyclerVie
         //BELOW COMMENT COPIED FROM YUSUF IN-CLASS EXAMPLE
         // Return the size of your dataset (invoked by the layout manager)
 
-        return 12
+        return foodList.size
         //also can return whatever size we decide ie. 12 food items
     }
 
