@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import kotlin.random.Random
 
 //adapter for the drink Recycler View
 class drinkRecyclerAdapter( var drinkList: ArrayList<DrinkSelections>) : RecyclerView.Adapter<drinkRecyclerAdapter.DrinkViewHolder>() {
@@ -15,7 +16,7 @@ class drinkRecyclerAdapter( var drinkList: ArrayList<DrinkSelections>) : Recycle
     //inner class provides a reference to each particular row in RecyclerView
     inner class DrinkViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val drinkName: TextView = itemView.findViewById(R.id.drinks_name_label)
-        //val drinkPrice =... create our own price here if we cant grab one from API
+        val drinkPrice: TextView = itemView.findViewById(R.id.drinks_price_label)
         val drinkImage: ImageView = itemView.findViewById(R.id.drinks_picture)
 
 
@@ -28,6 +29,8 @@ class drinkRecyclerAdapter( var drinkList: ArrayList<DrinkSelections>) : Recycle
     override fun onBindViewHolder(holder: DrinkViewHolder, position:Int) {
         val currentDrink = drinkList[position]
         holder.drinkName.text = "${currentDrink.strDrink}"
+        currentDrink.drinkPrice = Random.nextInt(5,10)
+        holder.drinkPrice.text = "$${currentDrink.drinkPrice}"
         val myContext = holder.itemView.context
 
         Glide.with(myContext)

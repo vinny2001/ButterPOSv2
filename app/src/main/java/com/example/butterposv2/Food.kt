@@ -7,7 +7,10 @@ data class Food(
 )
 data class AmericanFoods(
     val strMeal: String,
-    val strMealThumb: String
+    val strMealThumb: String,
+    //we are not grabbing meal price from API but need to implement our own price
+    //this is done in onBinderView in the RecyclerViewAdapter
+    var mealPrice: Int
 )
 
 /*BELOW IS JSON RETURN OF https://www.themealdb.com/api/json/v1/1/filter.php?a=American

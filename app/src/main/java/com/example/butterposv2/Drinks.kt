@@ -6,5 +6,6 @@ data class Drinks(
 
 data class DrinkSelections(
     val strDrink: String,
-    val strDrinkThumb: String
+    val strDrinkThumb: String,
+    var drinkPrice: Int //drinkPrice is not provided by API
 )

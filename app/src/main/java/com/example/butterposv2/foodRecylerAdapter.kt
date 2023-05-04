@@ -7,6 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.random.Random
 
 //adapter for the food Recycler View
 class foodRecyclerAdapter( var foodList: ArrayList<AmericanFoods>) : RecyclerView.Adapter<foodRecyclerAdapter.FoodViewHolder>() {
@@ -14,19 +18,32 @@ class foodRecyclerAdapter( var foodList: ArrayList<AmericanFoods>) : RecyclerVie
     //inner class provides a reference to each particular row in RecyclerView
     inner class FoodViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val foodName: TextView = itemView.findViewById(R.id.drinks_name_label)
-        //val foodPrice =... create our own price here if we cant grab one from API
+
+        val foodPrice: TextView = itemView.findViewById(R.id.drinks_price_label)
+
         val foodImage: ImageView = itemView.findViewById(R.id.drinks_picture)
 
 
     }
+    //
     override fun onCreateViewHolder(parent: ViewGroup, viewType:Int): FoodViewHolder {
         //takes a file and inflates during runtime
         val view = LayoutInflater.from(parent.context).inflate(R.layout.food_individual_row, parent, false)
         return FoodViewHolder(view)
     }
+
+    //this is where each item is populated
     override fun onBindViewHolder(holder: FoodViewHolder, position:Int) {
         val currentFood = foodList[position]
+        //price is added here. This is random unless we want to implement
+        //if(currentFood.foodName == Banana Pancakes){currentFood.mealPrice = NotRandomPrice}
+        //for each individual item
+        currentFood.mealPrice = Random.nextInt(8, 20)
+
         holder.foodName.text = "${currentFood.strMeal}"
+
+        holder.foodPrice.text = "$${currentFood.mealPrice}"
+
         val myContext = holder.itemView.context
 
         Glide.with(myContext)
