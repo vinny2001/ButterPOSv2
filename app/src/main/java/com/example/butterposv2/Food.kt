@@ -1,13 +1,16 @@
 package com.example.butterposv2
 
-import android.graphics.drawable.Drawable
+
 
 data class Food(
     val meals:List<AmericanFoods>
 )
 data class AmericanFoods(
     val strMeal: String,
-    val strMealThumb: String // Why is this a string? (From: Vinny)
+    val strMealThumb: String,
+    //we are not grabbing meal price from API but need to implement our own price
+    //this is done in onBinderView in the RecyclerViewAdapter
+    var mealPrice: Int
 )
 
 /*BELOW IS JSON RETURN OF https://www.themealdb.com/api/json/v1/1/filter.php?a=American
