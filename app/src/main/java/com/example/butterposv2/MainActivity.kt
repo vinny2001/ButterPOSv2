@@ -3,11 +3,16 @@ package com.example.butterposv2
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.butterposv2.databinding.ActivityMainBinding
+import com.example.butterposv2.ui.ReceiptFragment
+import com.example.butterposv2.ui.SupportFragment
+import com.example.butterposv2.ui.TotalFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +34,16 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_order, R.id.navigation_food, R.id.navigation_drinks
             )
         )
+
+        if(savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.receipt_fragment_container, ReceiptFragment())
+                .replace(R.id.support_fragment_container, SupportFragment())
+                .replace(R.id.total_fragment_container, TotalFragment())
+                .commitAllowingStateLoss()
+        }
+
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
