@@ -1,13 +1,12 @@
 package com.example.butterposv2.ui.food
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +32,7 @@ class FoodFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
 
 
@@ -44,12 +44,25 @@ class FoodFragment : Fragment() {
 
         val foodRecyclerView = view.findViewById<RecyclerView>(R.id.food_recycler_view)
 
+
+
+
+
         //Setting up linear layout manager and attaching adapter... error here(?)
         // * Put adapter after layout inflater, but adapter STILL not attached (RUNTIME ERROR)
 
 
         foodRecyclerView?.adapter = adapter
         foodRecyclerView?.layoutManager = LinearLayoutManager(view.context)
+
+
+        adapter.setOnItemClickListener { stringValue, intValue ->
+            sharedViewModel.setSelectedDataList(stringValue, intValue)
+        }
+
+        /*adapter?.setOnItemClickListener { stringValue, intValue ->
+            sharedViewModel.setSelectedDataList(stringValue as List<Pair<String, Int>>)
+        }*/
 
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -72,18 +85,18 @@ class FoodFragment : Fragment() {
                     adapter.notifyDataSetChanged()
                 }
             }
+
         })
+
 
         // Inflate the layout for this fragment
         return view
     }
     fun onItemClick(stringValue: String, intValue: Int) {
-        val dataList = listOf(Pair(stringValue, intValue))
+        val dataList = MutableLiveData(Pair(stringValue, intValue))
         sharedViewModel.setSelectedDataList(dataList)
     }
-    fun onItemDoubleClick(stringValue: String, intValue: Int) {
-        // Handle double click event for grabbing information from the first fragment
-    }
+
 }
 
 

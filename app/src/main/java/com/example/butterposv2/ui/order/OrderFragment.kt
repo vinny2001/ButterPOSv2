@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.butterposv2.MainActivity
+import com.example.butterposv2.OnItemClickListener
 import com.example.butterposv2.R
 import com.example.butterposv2.reciept_recycler_adapter
 import com.example.butterposv2.ui.theViewModel
@@ -61,38 +62,39 @@ class OrderFragment : Fragment() {
         return view
     }
 
-  /*  private fun createNotificationChannel(){
-        //If Android Oreo or above, use REQUIRED notification channel
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ){
-            val name = "Order Status"
-            val descriptionText = "Your order has been placed!"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply{
-                description = descriptionText
-            }
-            val notificationManager: NotificationManager = context?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
-    // For Versions < Oreo:
 
-    @SuppressLint("MissingPermission")
-    private fun sendNotification(){
+    /*  private fun createNotificationChannel(){
+          //If Android Oreo or above, use REQUIRED notification channel
+          if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ){
+              val name = "Order Status"
+              val descriptionText = "Your order has been placed!"
+              val importance = NotificationManager.IMPORTANCE_DEFAULT
+              val channel = NotificationChannel(CHANNEL_ID, name, importance).apply{
+                  description = descriptionText
+              }
+              val notificationManager: NotificationManager = context?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+              notificationManager.createNotificationChannel(channel)
+          }
+      }
+      // For Versions < Oreo:
 
-        val builder = view?.context?.let {
-            NotificationCompat.Builder(it, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("Order Status")
-                .setContentText("Your order has been placed!")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-        }
+      @SuppressLint("MissingPermission")
+      private fun sendNotification(){
 
-        if (builder != null) {
-            with(view?.context?.let { NotificationManagerCompat.from(it) }){
-                this?.notify(notificationId, builder.build())
-            }
-        }
-    }*/
+          val builder = view?.context?.let {
+              NotificationCompat.Builder(it, CHANNEL_ID)
+                  .setSmallIcon(R.drawable.ic_launcher_foreground)
+                  .setContentTitle("Order Status")
+                  .setContentText("Your order has been placed!")
+                  .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+          }
+
+          if (builder != null) {
+              with(view?.context?.let { NotificationManagerCompat.from(it) }){
+                  this?.notify(notificationId, builder.build())
+              }
+          }
+      }*/
 
 }
 
