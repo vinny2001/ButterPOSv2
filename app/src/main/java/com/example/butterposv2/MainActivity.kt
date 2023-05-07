@@ -34,14 +34,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_order, R.id.navigation_food, R.id.navigation_drinks
             )
         )
-
-        if(savedInstanceState == null) {
+        //used for fragment pieces delete if no problems
+        /*if(savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.receipt_fragment_container, ReceiptFragment())
                 .replace(R.id.support_fragment_container, SupportFragment())
                 .replace(R.id.total_fragment_container, TotalFragment())
                 .commitAllowingStateLoss()
-        }
+        }*/
 
 
         setupActionBarWithNavController(navController, appBarConfiguration)
