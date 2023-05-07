@@ -37,6 +37,7 @@ class reciept_recycler_adapter(var dataList: List<Pair<String,Int>>) : RecyclerV
         return dataList.size
     }
 
+
     fun setData(dataList: List<Pair<String, Int>>) {
         this.dataList = dataList
     }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.butterposv2.R
 import com.example.butterposv2.reciept_recycler_adapter
@@ -23,9 +24,16 @@ class OrderFragment : Fragment() {
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_order, container, false)
+
         recyclerView = view.findViewById(R.id.reciept_Recycler_View)
+
         adapter = reciept_recycler_adapter(emptyList()) // Pass an empty list initially
-        recyclerView.adapter = adapter
+
+        recyclerView?.adapter = adapter
+        recyclerView?.layoutManager = LinearLayoutManager(view.context)
+        //comment
+        //drinksRecyclerView?.adapter = adapter
+        //drinksRecyclerView?.layoutManager = LinearLayoutManager(view.context)
 
         sharedViewModel.getSelectedDataList().observe(viewLifecycleOwner, { dataList ->
             adapter.setData(dataList)
