@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,8 +27,7 @@ import com.example.butterposv2.ui.theViewModel
 
 class OrderFragment : Fragment() {
 
-    private val CHANNEL_ID = "channel_id_order_notification"
-    private val notificationId = 101
+
 
     private lateinit var sharedViewModel: theViewModel
     private lateinit var recyclerView: RecyclerView
@@ -35,6 +35,8 @@ class OrderFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedViewModel = ViewModelProvider(requireActivity()).get(theViewModel::class.java)
+
+
 
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -59,7 +61,7 @@ class OrderFragment : Fragment() {
         return view
     }
 
-    private fun createNotificationChannel(){
+  /*  private fun createNotificationChannel(){
         //If Android Oreo or above, use REQUIRED notification channel
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ){
             val name = "Order Status"
@@ -73,8 +75,10 @@ class OrderFragment : Fragment() {
         }
     }
     // For Versions < Oreo:
+
     @SuppressLint("MissingPermission")
     private fun sendNotification(){
+
         val builder = view?.context?.let {
             NotificationCompat.Builder(it, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
@@ -88,15 +92,7 @@ class OrderFragment : Fragment() {
                 this?.notify(notificationId, builder.build())
             }
         }
-    }
-
-    fun orderButtonClick(){
-        createNotificationChannel()
-        val orderButton = view?.findViewById<Button>(R.id.order_button)
-        orderButton?.setOnClickListener{
-            sendNotification()
-        }
-    }
+    }*/
 
 }
 

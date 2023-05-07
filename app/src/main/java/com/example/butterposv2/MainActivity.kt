@@ -25,6 +25,9 @@ import com.example.butterposv2.ui.TotalFragment
 
 class MainActivity : AppCompatActivity() {
 
+    private val CHANNEL_ID = "channel_id_order_notification"
+    private val notificationId = 101
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,9 +58,16 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+
+        createNotificationChannel()
+        val orderButton = findViewById<Button>(R.id.order_button)
+        orderButton.setOnClickListener{
+            sendNotification()
+        }
+
     }
 
-    /*private fun createNotificationChannel(){
+    private fun createNotificationChannel(){
         //If Android Oreo or above, use REQUIRED notification channel
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ){
             val name = "Order Status"
@@ -83,12 +93,5 @@ class MainActivity : AppCompatActivity() {
             notify(notificationId, builder.build())
         }
     }
-
-    fun onClickOrderButton(){
-        val orderButton = findViewById<Button>(R.id.order_button)
-        orderButton.setOnClickListener{
-            sendNotification()
-        }
-    }*/
 
 }
