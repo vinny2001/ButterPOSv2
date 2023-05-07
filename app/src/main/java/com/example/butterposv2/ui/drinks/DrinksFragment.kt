@@ -78,9 +78,12 @@ class DrinksFragment : Fragment() {
         // Inflate the layout for this fragment
         return view
     }
-    fun onItemClick(stringValue: String, intValue: Int) {
+     fun onItemClick(stringValue: String, intValue: Int) {
         val dataList = listOf(Pair(stringValue, intValue))
         sharedViewModel.setSelectedDataList(dataList)
+    }
+    fun onItemDoubleClick(stringValue: String, intValue: Int) {
+        // Handle double click event for grabbing information from the first fragment
     }
 
 }

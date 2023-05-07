@@ -81,6 +81,9 @@ class FoodFragment : Fragment() {
         val dataList = listOf(Pair(stringValue, intValue))
         sharedViewModel.setSelectedDataList(dataList)
     }
+    fun onItemDoubleClick(stringValue: String, intValue: Int) {
+        // Handle double click event for grabbing information from the first fragment
+    }
 }
 
 
