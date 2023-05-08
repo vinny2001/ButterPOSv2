@@ -12,6 +12,7 @@ class PaymentActivity : AppCompatActivity() {
     private lateinit var expDateInput: EditText
     private lateinit var cvvInput: EditText
     private lateinit var payButton: Button
+    private lateinit var backPayButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +22,8 @@ class PaymentActivity : AppCompatActivity() {
         expDateInput = findViewById(R.id.exp_date_input)
         cvvInput = findViewById(R.id.cvv_input)
         payButton = findViewById(R.id.pay_button)
+        backPayButton = findViewById(R.id.back_pay_button)
+
 
         payButton.setOnClickListener {
             val cardNumber = cardNumberInput.text.toString()
@@ -34,6 +37,9 @@ class PaymentActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show()
             }
+        }
+        backPayButton.setOnClickListener{
+            finish()
         }
     }
 }
