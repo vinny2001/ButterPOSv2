@@ -6,16 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.coroutines.flow.internal.NoOpContinuation.context
+import com.example.butterposv2.ui.food.FoodFragment
+
 import kotlin.collections.ArrayList
-import kotlin.coroutines.jvm.internal.CompletedContinuation.context
+
+
+
 import kotlin.random.Random
 
 //adapter for the food Recycler View
-class foodRecyclerAdapter( var foodList: ArrayList<AmericanFoods>,var itemList: MutableList<theItem>) : RecyclerView.Adapter<foodRecyclerAdapter.FoodViewHolder>() {
+class foodRecyclerAdapter(val context: FoodFragment,
+                          var foodList: ArrayList<AmericanFoods>,
+                          var itemList: MutableList<theItem>) : RecyclerView.Adapter<foodRecyclerAdapter.FoodViewHolder>() {
     private var onItemClickListener: OnItemClickListener? = null
 
     //inner class provides a reference to each particular row in RecyclerView
@@ -77,7 +81,7 @@ class foodRecyclerAdapter( var foodList: ArrayList<AmericanFoods>,var itemList: 
             //also can return whatever size we decide ie. 12 food items
         }
     fun saveItemToSharedPreferences(item:Item){
-        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs",Context.MODE_PRIVATE)
+        val sharedPreferences = context.getDataFromSharedPreferences("MyPrefs",Context.MODE_PRIVATE)
         val editor = sharedPreferences?.edit()
         editor?.putString("NameKey", item.toString())
         editor?.apply()

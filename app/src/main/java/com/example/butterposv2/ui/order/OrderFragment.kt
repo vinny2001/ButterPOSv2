@@ -42,11 +42,12 @@ class OrderFragment : Fragment() {
 
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         val view = inflater.inflate(R.layout.fragment_order, container, false)
 
         recyclerView = view.findViewById(R.id.reciept_Recycler_View)
 
-        adapter = reciept_recycler_adapter(emptyList()) // Pass an empty list initially
+        //adapter = reciept_recycler_adapter(emptyList()) // Pass an empty list initially
 
         val dataList = mutableListOf<theItem>()
         //grab info from shared preferences
@@ -54,19 +55,21 @@ class OrderFragment : Fragment() {
         val name = sharedPreferences.getString(NAME_KEY, "") ?: ""
         val value = sharedPreferences.getInt(VALUE_KEY, 0)
         //create an Iem object
-        val item = theItem(itemName, itemPrice )
+        val item = theItem(name, value)
+        dataList.add(item)
 
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(view.context)
-        //comment
-        //drinksRecyclerView?.adapter = adapter
-        //drinksRecyclerView?.layoutManager = LinearLayoutManager(view.context)
+
+        val adapter = reciept_recycler_adapter(dataList)
+        recyclerView.adapter = adapter
 
 
             // Notify the adapter that data has changed
             adapter.notifyDataSetChanged()
-        })
-
         return view
+        }
+
+
     }
 

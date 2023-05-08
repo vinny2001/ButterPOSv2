@@ -8,18 +8,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.butterposv2.*
-import com.example.butterposv2.ui.theViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.time.temporal.ValueRange
 
 
 class FoodFragment : Fragment() {
@@ -45,7 +41,7 @@ class FoodFragment : Fragment() {
 
         val foodList = ArrayList<AmericanFoods>()
 
-        val adapter = foodRecyclerAdapter(foodList)
+        val adapter = foodRecyclerAdapter(this, foodList)
 
         val foodRecyclerView = view.findViewById<RecyclerView>(R.id.food_recycler_view)
 
@@ -56,8 +52,6 @@ class FoodFragment : Fragment() {
 
         foodRecyclerView?.adapter = adapter
         foodRecyclerView?.layoutManager = LinearLayoutManager(view.context)
-
-
 
 
         val retrofitBuilder = Retrofit.Builder()
@@ -100,24 +94,3 @@ class FoodFragment : Fragment() {
 }
 
 
-/*
-class FirstFragment : Fragment() {
-    private lateinit var sharedViewModel: SharedViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // ...
-    }
-
-    override fun onItemClick(stringValue: String, intValue: Int) {
-        val dataList = listOf(Pair(stringValue, intValue))
-        sharedViewModel.setSelectedDataList(dataList)
-        // ...
-    }
-}
-
-*/
