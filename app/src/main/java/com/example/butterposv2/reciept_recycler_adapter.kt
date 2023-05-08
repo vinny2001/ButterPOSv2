@@ -69,9 +69,7 @@ class reciept_recycler_adapter(var dataList: List<Pair<String,Int>>) : RecyclerV
         this.dataList = dataList
     }
 
-    fun setOnItemClickListener(listener: OrderFragment) {
-        onItemClickListener = listener
-    }
+
 
 
 }

@@ -4,24 +4,20 @@ import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.butterposv2.databinding.ActivityMainBinding
-import com.example.butterposv2.ui.ReceiptFragment
-import com.example.butterposv2.ui.SupportFragment
-import com.example.butterposv2.ui.TotalFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -64,6 +60,17 @@ class MainActivity : AppCompatActivity() {
         orderButton.setOnClickListener{
             sendNotification()
         }
+        val payButton: Button = findViewById(R.id.pay_button1)
+        payButton.setOnClickListener {
+            val intent = Intent(this, PaymentActivity::class.java)
+            startActivity(intent)
+        }
+
+        val settingsButton = findViewById<ImageButton>(R.id.settings_button)
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -93,5 +100,6 @@ class MainActivity : AppCompatActivity() {
             notify(notificationId, builder.build())
         }
     }
+
 
 }
