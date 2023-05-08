@@ -1,6 +1,8 @@
 package com.example.butterposv2.ui.food
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,17 +19,20 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.time.temporal.ValueRange
 
 
 class FoodFragment : Fragment() {
     // (Vinny): Changed URL for now to avoid runtime error
     val BASE_URL = "https://www.themealdb.com/api/json/v1/1/"
 
-    private lateinit var sharedViewModel: theViewModel
+   lateinit var  sharedPreferences: SharedPreferences
+   val PREF_NAME = "MyPrefs"
+    val NAME_KEY = "Name"
+    val VALUE_KEY = "Value"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedViewModel = ViewModelProvider(requireActivity()).get(theViewModel::class.java)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,9 +50,6 @@ class FoodFragment : Fragment() {
         val foodRecyclerView = view.findViewById<RecyclerView>(R.id.food_recycler_view)
 
 
-
-
-
         //Setting up linear layout manager and attaching adapter... error here(?)
         // * Put adapter after layout inflater, but adapter STILL not attached (RUNTIME ERROR)
 
@@ -56,13 +58,7 @@ class FoodFragment : Fragment() {
         foodRecyclerView?.layoutManager = LinearLayoutManager(view.context)
 
 
-        adapter.setOnItemClickListener { stringValue, intValue ->
-            sharedViewModel.setSelectedDataList(stringValue, intValue)
-        }
 
-        /*adapter?.setOnItemClickListener { stringValue, intValue ->
-            sharedViewModel.setSelectedDataList(stringValue as List<Pair<String, Int>>)
-        }*/
 
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -92,10 +88,14 @@ class FoodFragment : Fragment() {
         // Inflate the layout for this fragment
         return view
     }
-    fun onItemClick(stringValue: String, intValue: Int) {
-        val dataList = MutableLiveData(Pair(stringValue, intValue))
-        sharedViewModel.setSelectedDataList(dataList)
+    fun saveDataToSharedPreferences(name:String, price:Int){
+        sharedPreferences = requireContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString(NAME_KEY, name)
+        editor.putInt(VALUE_KEY, price)
+        editor.apply()
     }
+
 
 }
 
